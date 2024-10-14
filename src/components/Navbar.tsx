@@ -1,68 +1,85 @@
-import React from "react";
-import {Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const NavItem: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
+  <Link to={to} className="text-sm text-gray-600 hover:text-gray-900">
+    {children}
+  </Link>
+)
+
+const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'outline' }> = 
+  ({ children, variant = 'primary', ...props }) => (
+  <button
+    className={`px-4 py-2 rounded-full font-medium ${
+      variant === 'primary'
+        ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white'
+        : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+    }`}
+    {...props}
+  >
+    {children}
+  </button>
+)
+const OButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'outline' }> = 
+  ({ children,  ...props }) => (
+  <button
+    className={`px-4 py-2 rounded-full font-medium ${
+    
+        'border border-gray-300 text-gray-700 hover:bg-gray-50'
+    }`}
+    {...props}
+  >
+    {children}
+  </button>
+)
 
 
 
-const Navbar = () => {
+const ChevronDown: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+)
+
+
+
+const Navbar =()=> {
   return (
-    <div className="min-h-screen bg-[#1c1b22] text-white relative overflow-hidden">
-    {/* Background image */}
-    <div className="absolute inset-0 z-0">
-      <img
-        src="/placeholder.svg?height=1080&width=1920"
-        alt="Engineering parts background"
-        // layout="fill"
-        // objectFit="cover"
-        className="opacity-50"
-      />
-    </div>
-
-    {/* Content */}
-    <div className="relative z-10">
-      <header className="flex justify-between items-center py-4 px-6">
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-            <span className="text-[#1c1b22] text-2xl font-bold">L</span>
+    <div className="bg-white w-full shadow-xl fixed left-0 top-0 z-[99]">
+      <nav className="container mx-auto px-4 py-4   ">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="text-xl font-bold">Spider</span>
           </div>
-          <span className="text-xl font-semibold">Leo</span>
-        </Link>
-        <nav className="hidden md:flex space-x-6">
-          <Link to="/about">About us</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/contact">Contact</Link>
-        </nav>
-        <button className="bg-white text-[#1c1b22] hover:bg-gray-200">
-          Try It Now
-        </button>
-      </header>
-
-      <main className="container mx-auto px-6 py-12 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-          The world's first<br />engineering design copilot.
-        </h1>
-        <button className="bg-[#4169e1] hover:bg-[#3a5cd1] text-white px-8 py-3 text-lg">
-          Get Started with Leo
-        </button>
-
-        {/* <div className="mt-16">
-          <p className="text-gray-400 mb-4">Trusted by Mechanical Engineers at</p>
-          <div className="flex justify-center items-center space-x-8 flex-wrap">
-            {['Scania', 'HP', 'Philips', 'MIT', 'Elbit Systems'].map((company) => (
-              <img
-                key={company}
-                src="/placeholder.svg?height=40&width=80"
-                alt={company}
-                width={80}
-                height={40}
-                className="opacity-70"
-              />
-            ))}
+          <div className="hidden md:flex space-x-6">
+            <NavItem to="#">
+              PRE-BUILT AGENTS <ChevronDown className="inline ml-1 w-4 h-4" />
+            </NavItem>
+            <NavItem to="#">AGENT API</NavItem>
+            <NavItem to="#">PRICING</NavItem>
+            <NavItem to="#">
+              RESOURCES <ChevronDown className="inline ml-1 w-4 h-4" />
+            </NavItem>
           </div>
-        </div> */}
-      </main>
+          <div className="flex space-x-4 items-center">
+            <OButton>
+            Agent API Studio
+            </OButton>
+            <Button>Book Demo</Button>
+          </div>
+        </div>
+      </nav>
+
+    
     </div>
-  </div>
   )
 }
+
+
 
 export default Navbar
