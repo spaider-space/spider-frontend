@@ -2,6 +2,7 @@ import React from 'react'
 
 
 import { Link } from 'react-router-dom'
+import Logo from "../assets/logo.svg"
 
 const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
   <Link to={href} className="text-gray-400 hover:text-white transition-colors">
@@ -32,23 +33,20 @@ const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant
 
 const Footer = () => {
   return (
-    <footer className="w-full h-64 bg-gradient-to-b from-purple-50 to-white">
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="  w-full h-[300px] bg-gradient-to-b from-purple-50 to-white  flex  items-center">
+   <div  className=" mx-auto  container ">
+   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-[#1c1b22]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <span className="text-xl font-bold">Leo</span>
+        <div className="flex items-center space-x-2">
+            <img src={Logo} alt="spider" className="w-10 h-10"/>
+          
+            <span className="text-xl font-bold">Spider</span>
           </div>
           <div className="flex space-x-4">
             <FooterLink href="/terms">Terms of Service</FooterLink>
             <FooterLink href="/privacy">Privacy Policy</FooterLink>
           </div>
-          <p className="text-gray-400">© 2023 Leo AI, Inc.</p>
+          <p className="text-gray-400">© 2024 Spider, Inc.</p>
         </div>
         
         <div className="space-y-4">
@@ -69,10 +67,10 @@ const Footer = () => {
           <h3 className="text-lg font-semibold">Contact us</h3>
           <address className="text-gray-400 not-italic">
             160 Alewife Brook Pkwy #1095<br />
-            Cambridge, MA 02138<br />
+            Cambridge, MA 02138<br /> 
             United States
           </address>
-          <p className="text-gray-400">hello@getleo.ai</p>
+          <p className="text-gray-400">hello@spider.ai</p>
           <div className="flex space-x-4">
             <SocialIcon 
               href="https://linkedin.com" 
@@ -93,7 +91,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+   </div>
+     
   </footer>
   )
 }

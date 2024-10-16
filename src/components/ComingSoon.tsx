@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'outline' }> = 
   ({ children, variant = 'primary', ...props }) => (
   <button
@@ -12,25 +14,29 @@ const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant
   </button>
 )
 const ComingSoon = () => {
+  const navigate = useNavigate()
   return (
-    <section className=" text-white h-[500px]">
-   
-        <div className=" flex justify-center items-center flex-col space-y-10">
-        <span className="text-purple-600  text-2xl">Coming soon...</span>
-         
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Generate custom parts
-            </h1>
-          <p className="text-gray-400 mb-8 max-w-md">
-            Describe the functionality or geometry of the required component and get an editable CAD part with its feature tree
-          </p>
-        
-          <Button>
-          Join waitlist
-          </Button>
-        </div>
-      
-  </section>
+  
+
+  <div className="w-full container mx-auto my-8 p-6 md:p-12 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-xl">
+      <div className="text-center space-y-6">
+        <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+          Join the waiting list
+        </h2>
+        <h3 className="text-2xl md:text-3xl font-semibold">
+          Be the first to experience our revolutionary product.
+        </h3>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto">
+          Early access to cutting-edge features. Priority onboarding.
+          Exclusive insights from our team.
+        </p>
+        <Button 
+        onClick={()=>navigate("/waitinglist")}
+        className="bg-white text-gray-900 hover:bg-gray-200 text-lg px-8 py-3 rounded-full font-semibold transition-colors duration-300">
+          Join Waitlist
+        </Button>
+      </div>
+    </div>
   )
 }
 

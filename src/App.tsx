@@ -3,6 +3,8 @@ import './App.css'
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home'
+import Blogs from "./pages/Blogs"
+import WaitingList from "./pages/WaitingList"
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 function App() {
 
@@ -14,11 +16,13 @@ function App() {
 
 <Routes>
   <Route path="/" element={  <Home   />} />
+  <Route path="/blogs" element={  <Blogs  />} />
+  <Route path="/waitinglist" element={  <WaitingList  />} />
 </Routes>
     
 <Footer />
       </Router>
-    // </div>
+    // </div> 
     // </div>
     
   )
