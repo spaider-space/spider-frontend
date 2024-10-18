@@ -84,7 +84,7 @@ type FormData = {
   source: string
 }
 
-const WaitingList: React.FC = () => {
+const BookDemo: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     company: '',
@@ -125,9 +125,9 @@ const WaitingList: React.FC = () => {
             ))}
           </ul>
         </div>
-        <div className="basis-[50%] max-w-[400px] bg-gray-50 p-8  rounded-2xl">
+        <div className="basis-[50%] max-w-[400px]  bg-gray-50 p-8 rounded-2xl">
           <form onSubmit={handleSubmit} className="space-y-8">
-            <div>
+            <div  className="">
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                 Name
               </label>
@@ -147,7 +147,7 @@ const WaitingList: React.FC = () => {
               <Input
                 id="company"
                 name="company"
-                placeholder="eg: lyzr.ai"
+                placeholder="eg: spider"
                 value={formData.company}
                 onChange={handleInputChange}
                 className="mt-1"
@@ -161,7 +161,7 @@ const WaitingList: React.FC = () => {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="eg: jack@lyzr.ai"
+                placeholder="eg: spider@gmail.com"
                 value={formData.email}
                 onChange={handleInputChange}
                 className="mt-1"
@@ -170,7 +170,7 @@ const WaitingList: React.FC = () => {
 
             <div>
               <label htmlFor="source" className="block text-sm font-medium text-gray-700">
-              Agent you are interested in?
+                Agent you are interested in?
               </label>
               <Select
                 id="source"
@@ -189,7 +189,7 @@ const WaitingList: React.FC = () => {
               type="submit"
               className="w-full bg-gray-800 hover:bg-gray-700 text-white"
             >
-              Join Waiting List
+              Book Demo
             </Button>
           </form>
         </div>
@@ -198,4 +198,4 @@ const WaitingList: React.FC = () => {
   )
 }
 
-export default WaitingList
+export default BookDemo;

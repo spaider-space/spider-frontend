@@ -18,8 +18,9 @@ const ComingSoon = () => {
   return (
   
 
-  <div className="w-full container mx-auto my-8 p-6 md:p-12 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-xl">
-      <div className="text-center space-y-6">
+  <div className=" container mx-auto px-4 py-8 ">
+    <div className="rounded-3xl bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-xl py-8">
+    <div className="text-center space-y-6">
         <h2 className="text-4xl md:text-5xl font-bold leading-tight">
           Join the waiting list
         </h2>
@@ -36,6 +37,8 @@ const ComingSoon = () => {
           Join Waitlist
         </Button>
       </div>
+    </div>
+    
     </div>
   )
 }

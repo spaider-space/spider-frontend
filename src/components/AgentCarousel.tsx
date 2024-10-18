@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import agentOne from "../assets/agent-one.webp"
 import agentTwo from "../assets/agent-two.jpg"
 import agentThree from "../assets/agent-three.jpg"
+import { useNavigate } from 'react-router-dom';
 // const carouselData = [
 //   {
 //     id: 1,
@@ -79,6 +80,7 @@ const OButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { varian
 )
 
 const AgentCarousel: React.FC = () => {
+  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -128,7 +130,7 @@ const AgentCarousel: React.FC = () => {
                   Learn More
                   </OButton>
                   
-                  <Button>
+                  <Button  onClick={()=>navigate("/")}>
                   Book Demo
                   </Button>
                 </div>

@@ -90,7 +90,7 @@ const Blogs = () => {
     <div className="min-h-screen ">
     <div className="fixed top-0 left-0 w-full h-1 bg-gray-200">
       <div
-        className="h-full bg-blue-500 transition-all duration-300 ease-out"
+        className="h-full bg-gray-500 transition-all duration-300 ease-out"
         style={{ width: `${readProgress}%` }}
       ></div>
     </div>
@@ -116,7 +116,7 @@ const Blogs = () => {
               <button
                 onClick={() => scrollToSection(section.id)}
                 className={`flex items-center w-full text-left p-2 rounded transition-colors ${
-                  activeSection === section.id ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-200'
+                  activeSection === section.id ? 'bg-gray-100 text-gray-700' : 'hover:bg-gray-200'
                 }`}
               >
                 <ChevronRight className="mr-2 h-4 w-4" />

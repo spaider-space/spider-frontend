@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home'
 import Blogs from "./pages/Blogs"
 import WaitingList from "./pages/WaitingList"
+import BookDemo  from "./pages/BookDemo"
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   <Route path="/" element={  <Home   />} />
   <Route path="/blogs" element={  <Blogs  />} />
   <Route path="/waitinglist" element={  <WaitingList  />} />
+  <Route path="/demo" element={  <BookDemo  />} />
 </Routes>
     
 <Footer />
