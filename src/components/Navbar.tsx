@@ -1,93 +1,22 @@
-// import {useState} from 'react'
-// import Logo from "../assets/logo.svg"
-// import Down from "../assets/downarrow.svg"
-// import { useNavigate } from 'react-router-dom'
-// const Navbar =()=> {
-//   const navigate = useNavigate()
-//   const [isOpen,setIsOpen] = useState(false)
-//   const [isResourcesOpen,setIsResourcesOpen] = useState(false)
-//   return (
-//     <div className="bg-white w-full shadow-xl fixed left-0 top-0 z-[99]">
-//       <nav className="container mx-auto px-2 py-4   ">
-//         <div className="flex items-center justify-between">
-//           <div className="flex items-center space-x-2  cursor-pointer" onClick={()=>navigate("/")}>
-//             <img src={Logo} alt="spider" className="w-10 h-10"/>
-
-//             <span className="text-xl font-bold">Spider</span>
-//           </div>
-//           <ul className="hidden md:flex space-x-16 uppercase">
-
-//             <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
-//   <li className="text-md flex items-center space-x-2 cursor-pointer">
-//     <span>Agents</span>
-//     <span className="mt-1">
-//       <img src={Down} className="w-3 h-3" />
-//     </span>
-//   </li>
-
-//   {isOpen && (
-//     <ul
-//       className="absolute capitalize top-[100%] w-[250px] space-y-4 bg-white p-4 z-[999] rounded-md"
-//       style={{
-//         boxShadow:
-//           "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-//       }}
-//     >
-//       <li  className="cursor-pointer">General Purpose Agents</li>
-//       <li    className="cursor-pointer">Domain expert agents</li>
-//       <li    className="cursor-pointer">Customize your agent</li>
-//     </ul>
-//   )}
-// </div>
-
-//             <li  className="text-md  cursor-pointer">Pricing</li>
-
-//             <div className="relative" onMouseEnter={() => setIsResourcesOpen(true)} onMouseLeave={() => setIsResourcesOpen(false)}>
-//   <li className="text-md flex items-center space-x-2 cursor-pointer">
-//     <span>Resources</span>
-//     <span className="mt-1">
-//       <img src={Down} className="w-3 h-3" />
-//     </span>
-//   </li>
-
-//   {isResourcesOpen && (
-//     <ul
-//       className="absolute capitalize top-[100%] w-[250px] space-y-4 bg-white p-4 z-[999] rounded-md"
-//       style={{
-//         boxShadow:
-//           "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-//       }}
-//     >
-//       <li  className="cursor-pointer">Blog</li>
-//       <li    className="cursor-pointer">Usecases</li>
-//     </ul>
-//   )}
-// </div>
-
-//           </ul>
-//           <div className="flex space-x-4 items-center">
-
-//             <button  className="px-4 py-2 rounded-full font-medium  bg-gradient-to-r from-purple-600 to-pink-500 text-white"  >Book Demo</button>
-//           </div>
-//         </div>
-//       </nav>
-
-//     </div>
-//   )
-// }
-
-// export default Navbar
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import Menu from "../assets/menu.svg";
 import Down from "../assets/downarrow.svg";
 import ShimmerButton from "./ui/shimmer-button";
+import { ChevronUpIcon, ChevronDownIcon } from "lucide-react";
 
+type subitem = {
+  title: string;
+  route: string;
+};
+type NavItemProps = {
+  title: string;
+  subItems?: subitem[];
+};
 export default function Navbar() {
   const navigate = useNavigate();
-  // const [isOpen, setIsOpen] = useState(false)
-  // const [isResourcesOpen, setIsResourcesOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <div className="bg-white w-full shadow-xl fixed left-0 top-0 z-50">
@@ -107,27 +36,57 @@ export default function Navbar() {
             <NavItem
               title="Agents"
               subItems={[
-                "General Purpose Agents",
-                "Domain Expert Agents",
-                "Customize Your Agent",
+                {
+                  title: "General Purpose Agents",
+                  route: "/generalpurposeagents",
+                },
+                {
+                  title: "Domain Expert Agents",
+                  route: "/domainexpertagenst",
+                },
+                {
+                  title: "Customize Your Agent",
+                  route: "/customiseyouragent",
+                },
               ]}
             />
             <NavItem title="Pricing" />
-            <NavItem title="Resources" subItems={["Blog", "Use Cases"]} />
+            <NavItem
+              title="Resources"
+              subItems={[
+                {
+                  title: "Blog",
+                  route: "blogs",
+                },
+                {
+                  title: "Use Cases",
+                  route: "/usecases",
+                },
+              ]}
+            />
           </ul>
-          <div>
-            <ShimmerButton>Book Demo</ShimmerButton>
-            {/* <button className="px-4 py-2 rounded-full font-medium bg-black text-white hover:bg-gray-800 transition-colors"  onClick={()=>navigate("/demo")}>
+          <div className="hidden md:flex">
+            <ShimmerButton onClick={() => navigate("/demo")}>
               Book Demo
-            </button> */}
+            </ShimmerButton>
+          </div>
+          <div className="md:hidden">
+            <img
+              src={Menu}
+              className="w-8 h-8   cursor-pointer"
+              alt="menu"
+              onClick={() => setOpenMenu((prev) => !prev)}
+            />
           </div>
         </div>
       </nav>
+      <div className="md:hidden">{openMenu && <MobileMenu />}</div>
     </div>
   );
 }
 
-function NavItem({ title, subItems = [] }) {
+function NavItem({ title, subItems = [] }: NavItemProps) {
+  console.log(title, "subtimes");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -137,7 +96,14 @@ function NavItem({ title, subItems = [] }) {
       onMouseLeave={() => setIsOpen(false)}
     >
       <li className="text-sm font-medium flex items-center space-x-1 cursor-pointer text-black">
-        <span>{title}</span>
+        {title === "Pricing" ? (
+          <span>
+            <Link to="/pricing">{title}</Link>
+          </span>
+        ) : (
+          <span> {title}</span>
+        )}
+
         {subItems.length > 0 && (
           <span className="mt-1">
             <img src={Down} className="w-3 h-3" alt="Expand" />
@@ -145,14 +111,14 @@ function NavItem({ title, subItems = [] }) {
         )}
       </li>
 
-      {isOpen && subItems.length > 0 && (
+      {isOpen && subItems?.length > 0 && (
         <ul className="absolute capitalize top-full left-0 w-48 space-y-4 bg-white p-5 rounded-md shadow-md">
           {subItems.map((item, index) => (
             <li
               key={index}
               className="text-sm font-medium cursor-pointer text-black hover:text-gray-600 transition-colors"
             >
-              {item}
+              <Link to={`/${item.route}`}>{item?.title}</Link>
             </li>
           ))}
         </ul>
@@ -160,3 +126,103 @@ function NavItem({ title, subItems = [] }) {
     </div>
   );
 }
+
+const MobileMenu = () => {
+  const [expandedSections, setExpandedSections] = useState({
+    agents: true,
+    resources: true,
+  });
+  const navigate = useNavigate();
+
+  const toggleSection = (section: string) => {
+    setExpandedSections((prev: any) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+  return (
+    <div className="bg-white p-4 w-full max-w-md mx-auto font-sans">
+      {/* <button className="absolute top-4 right-4 text-gray-500">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button> */}
+
+      <div className="space-y-4">
+        <div>
+          <button
+            className="flex justify-between items-center w-full text-left  font-semibold"
+            onClick={() => toggleSection("agents")}
+          >
+            AGENTS
+            {expandedSections.agents ? (
+              <ChevronUpIcon className="h-5 w-5" />
+            ) : (
+              <ChevronDownIcon className="h-5 w-5" />
+            )}
+          </button>
+          {expandedSections.agents && (
+            <ul className="mt-2 space-y-2 pl-[10px]  ">
+              <li>
+                <Link to="/generalpurposeagents">General Purpose Agents</Link>
+              </li>
+              <li>
+                <Link to="/domainexpertagenst">Domain Expert Agents</Link>
+              </li>
+              <li>
+                <Link to="/customiseyouragent">Customize Your Agent</Link>
+              </li>
+            </ul>
+          )}
+        </div>
+
+        <div>
+          <button className="text-left w-full    font-semibold">
+            <Link to="/pricing">PRICING</Link>
+          </button>
+        </div>
+
+        <div>
+          <button
+            className="flex justify-between items-center w-full   font-semibold text-left"
+            onClick={() => toggleSection("resources")}
+          >
+            RESOURCES
+            {expandedSections.resources ? (
+              <ChevronUpIcon className="h-5 w-5" />
+            ) : (
+              <ChevronDownIcon className="h-5 w-5" />
+            )}
+          </button>
+          {expandedSections.resources && (
+            <ul className="mt-2 space-y-2  pl-[10px]">
+              <li>
+                <Link to="/blogs">BLOG</Link>
+              </li>
+              <li>
+                <Link to="/usecases">USECASES</Link>
+              </li>
+            </ul>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-8 space-y-4  ">
+        <ShimmerButton className="w-full" onClick={() => navigate("/demo")}>
+          Book Demo
+        </ShimmerButton>
+      </div>
+    </div>
+  );
+};
