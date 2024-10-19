@@ -127,15 +127,20 @@ function NavItem({ title, subItems = [] }: NavItemProps) {
   );
 }
 
+interface ExpandedSections {
+  agents: boolean;
+  resources: boolean;
+}
+
 const MobileMenu = () => {
-  const [expandedSections, setExpandedSections] = useState({
+  const [expandedSections, setExpandedSections] = useState<ExpandedSections>({
     agents: true,
     resources: true,
   });
   const navigate = useNavigate();
 
-  const toggleSection = (section: string) => {
-    setExpandedSections((prev: any) => ({
+  const toggleSection = (section: keyof ExpandedSections) => {
+    setExpandedSections((prev: ExpandedSections) => ({
       ...prev,
       [section]: !prev[section],
     }));
