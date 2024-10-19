@@ -1,10 +1,11 @@
-import { useState, ChangeEvent, FormEvent } from 'react'
-
+import { useState, ChangeEvent, FormEvent } from "react";
+import { cn } from "@/lib/utils";
+import AnimatedGridPattern from "../components/ui/animated-grid-pattern";
 type ButtonProps = {
-  children: React.ReactNode
-  className?: string
-  type?: 'button' | 'submit' | 'reset'
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+  children: React.ReactNode;
+  className?: string;
+  type?: "button" | "submit" | "reset";
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => (
   <button
@@ -13,18 +14,18 @@ const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => (
   >
     {children}
   </button>
-)
+);
 
 type InputProps = {
-  className?: string
-} & React.InputHTMLAttributes<HTMLInputElement>
+  className?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: React.FC<InputProps> = ({ className, ...props }) => (
   <input
     className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 ${className}`}
     {...props}
   />
-)
+);
 
 // type CheckboxProps = {
 //   id: string
@@ -46,9 +47,9 @@ const Input: React.FC<InputProps> = ({ className, ...props }) => (
 // )
 
 type SelectProps = {
-  children: React.ReactNode
-  className?: string
-} & React.SelectHTMLAttributes<HTMLSelectElement>
+  children: React.ReactNode;
+  className?: string;
+} & React.SelectHTMLAttributes<HTMLSelectElement>;
 
 const Select: React.FC<SelectProps> = ({ children, className, ...props }) => (
   <select
@@ -57,7 +58,7 @@ const Select: React.FC<SelectProps> = ({ children, className, ...props }) => (
   >
     {children}
   </select>
-)
+);
 
 const CheckCircle: React.FC = () => (
   <svg
@@ -74,35 +75,37 @@ const CheckCircle: React.FC = () => (
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
     <polyline points="22 4 12 14.01 9 11.01" />
   </svg>
-)
+);
 
 type FormData = {
-  name: string
-  company: string
-  email: string
-  usecases: string[]
-  source: string
-}
+  name: string;
+  company: string;
+  email: string;
+  usecases: string[];
+  source: string;
+};
 
 const WaitingList: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    company: '',
-    email: '',
+    name: "",
+    company: "",
+    email: "",
     usecases: [],
-    source: '',
-  })
+    source: "",
+  });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
+    e.preventDefault();
+    console.log("Form submitted:", formData);
     // Send the data to the server or handle it as needed
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -128,7 +131,10 @@ const WaitingList: React.FC = () => {
         <div className="basis-[50%] max-w-[400px] bg-gray-50 p-8  rounded-2xl">
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Name
               </label>
               <Input
@@ -141,7 +147,10 @@ const WaitingList: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Company name
               </label>
               <Input
@@ -154,7 +163,10 @@ const WaitingList: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Work Email
               </label>
               <Input
@@ -169,8 +181,11 @@ const WaitingList: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="source" className="block text-sm font-medium text-gray-700">
-              Agent you are interested in?
+              <label
+                htmlFor="source"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Agent you are interested in?
               </label>
               <Select
                 id="source"
@@ -193,9 +208,20 @@ const WaitingList: React.FC = () => {
             </Button>
           </form>
         </div>
+
+        <AnimatedGridPattern
+          numSquares={30}
+          maxOpacity={0.1}
+          duration={3}
+          repeatDelay={1}
+          className={cn(
+            "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+            "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+          )}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WaitingList
+export default WaitingList;

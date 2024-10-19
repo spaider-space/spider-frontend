@@ -94,6 +94,7 @@
 import { useState } from 'react'
 import { Network, CheckSquare, Cloud } from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
+import ShimmerButton from './ui/shimmer-button';
 
 const FeatureItem: React.FC<{ icon: React.ReactNode; text: string; tooltipText: string }> = ({ icon, text, tooltipText }) => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -123,6 +124,9 @@ export default function Header() {
 
    
     <div className=" flex items-center justify-between flex-col md:flex-row ">
+      {/* new  */}
+
+  
       <div className="basis-[50%] w-full h-full flex flex-col justify-center space-y-8">
         <div className="flex space-x-3 h-[60px] max-w-[500px] items-center px-4 bg-gray-100 rounded-full">
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,10 +143,12 @@ export default function Header() {
           Build reliable, private <br /> and self-learning <br /> <span className="text-gray-700">AI agents.</span>
         </h1>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-          <button className="px-4 py-2 rounded-full font-medium bg-black text-white hover:bg-gray-800 transition-colors  
+          {/* <button className="px-4 py-2 rounded-full font-medium bg-black text-white hover:bg-gray-800 transition-colors  
           cursor-pointer" onClick={()=>navigate("/demo")}>
             Book Demo
-          </button>
+          </button> */}
+
+          <ShimmerButton  onClick={()=>navigate("/demo")}>Book Demo</ShimmerButton>
         </div>
       </div>
       <div className="basis-[40%] h-full w-full flex items-center justify-center">
@@ -165,7 +171,6 @@ export default function Header() {
             />
           </div>
         </div>
-        {/* <div className="absolute inset-0 bg-grid-gray-100 z-0"></div> */}
       </div>
     </div>
 
