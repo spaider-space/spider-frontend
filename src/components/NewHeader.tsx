@@ -119,7 +119,7 @@ const NewHeader = () => {
     //   <RetroGrid />
     // </div>
 
-    <div className="relative flex flex-col md:flex-row min-h-[500px] mt-[60px] md:mt-[130px] w-full items-center justify-between overflow-hidden rounded-lg border bg-background px-4 py-8 md:py-0">
+    <div className="relative container flex flex-col md:flex-row min-h-[500px] mt-[60px] md:mt-[130px] w-full items-center justify-between overflow-hidden rounded-lg border bg-background px-4 py-8 md:py-0 ">
       <div className="w-full md:basis-[50%] flex flex-col justify-center space-y-8 md:space-y-12 mb-8 md:mb-0">
         <div className="max-w-[300px] mx-auto md:mx-0">
           <div

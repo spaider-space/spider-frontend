@@ -38,16 +38,74 @@
 
 import { useNavigate } from "react-router-dom";
 import Blog from "../assets/blog.webp";
+import Porter from "../assets/porter.webp";
+import FlickeringGrid from "./ui/flickering-grid";
+interface BlogCardProps {
+  imageSrc: string;
+  title: string;
+  id: string;
+}
 
-export default function Blogs() {
+const BlogCard: React.FC<BlogCardProps> = ({ imageSrc, title, id }) => {
   const navigate = useNavigate();
-
   return (
-    <div className=" container mx-auto px-4 sm:px-6 lg:px-4 py-4">
-      <h1 className="text-center text-3xl font-bold text-black mb-8">
+    <div className="max-w-[300px] bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300  z-[2] hover:shadow-xl">
+      <div className="relative">
+        <img src={imageSrc} alt="blog" className="w-full h-48 object-cover" />
+        <div className="absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-300 opacity-0 hover:opacity-100" />
+      </div>
+      <div className="p-4">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
+          {title}
+        </h3>
+        <button
+          className="px-4 py-2 bg-white text-black font-medium rounded-full border border-black hover:bg-gray-100 transition duration-300"
+          onClick={() => navigate(`/blogs/${id}`)}
+        >
+          Read More
+        </button>
+      </div>
+    </div>
+  );
+};
+export default function Blogs() {
+  return (
+    <div className=" container mx-auto px-4 py-20">
+      <h1 className="text-center text-3xl font-bold text-black mb-8  ">
         Know more about AI Agents
       </h1>
-      <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-md border border-gray-200">
+
+      <div className="relative h-[500px] flex items-center justify-center rounded-lg w-full bg-background overflow-hidden border">
+        <div className="flex justify-center  items-center gap-10">
+          <BlogCard
+            imageSrc={Porter}
+            title="Porter AI: Your Autonomous Space Industry Analyst"
+            id="2"
+          />
+          <BlogCard
+            imageSrc={Blog}
+            title="Harnessing the Future: The Rise of AI Engineering Agents"
+            id="1"
+          />
+          <BlogCard
+            imageSrc={Porter}
+            title="Porter AI: Your Autonomous Space Industry Analyst"
+            id="2"
+          />
+        </div>
+        <FlickeringGrid
+          className="z-0 absolute inset-0 size-full"
+          squareSize={4}
+          gridGap={6}
+          color="#6B7280"
+          maxOpacity={0.5}
+          flickerChance={0.1}
+          height={800}
+          // width={800}
+        />
+      </div>
+
+      {/* <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-md border border-gray-200">
         <div className="md:flex">
           <div className="md:w-1/2 bg-gray-100 p-8 flex flex-col items-center justify-center">
             <img
@@ -77,10 +135,9 @@ export default function Blogs() {
             >
               Read More
             </button>
-            {/* <ShinyButton   onClick={() => navigate("/blogs")}>Read More</ShinyButton> */}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
