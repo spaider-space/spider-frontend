@@ -11,8 +11,7 @@ import Pricings from "./pages/Pricings";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    //     <div  className="bg-white">
-    // <div  className="max-w-[1400px] mx-auto px-[20px] flex flex-col    ">
+    
     <Router>
       <Navbar />
 
@@ -28,8 +27,7 @@ function App() {
 
       <Footer />
     </Router>
-    // </div>
-    // </div>
+   
   );
 }
 
